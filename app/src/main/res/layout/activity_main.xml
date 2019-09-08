@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- TODO Change to ConstraintLayout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.MainActivity">
+
+        <Button
+            android:id="@+id/checkAnswersRestartGameBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/parent_margin"
+            android:layout_marginBottom="@dimen/parent_margin"
+            android:onClick="@{model::checkAnswersRestartGameBtnOnClick}"
+            android:text="@{model.checkAnswersRestartGameBtnLabel(context)}"
+            android:visibility="@{model.checkAnswersRestartGameBtnVisibility}" />
+
+        <LinearLayout
+            android:id="@+id/numQuestionsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcomeText"
+            android:layout_marginStart="@dimen/parent_margin"
+            android:layout_marginTop="@dimen/intra_margin"
+            android:layout_marginEnd="@dimen/parent_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="@{model.numQuestionsGroupVisibility}">
+
+            <TextView
+                android:id="@+id/numQuestionsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/intra_margin"
+                android:text="@string/num_questions"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+            <NumberPicker
+                android:id="@+id/numQuestionsPkr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/intra_margin"
+                android:descendantFocusability="blocksDescendants"
+                android:onClick="@{model::numQuestionsPkrOnClick}" />
+
+            <Button
+                android:id="@+id/fetchQuestionsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{model::fetchQuestionsOnClick}"
+                android:text="@string/fetch_questions" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/busyProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="@{model.busyProgressVisibility}" />
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/parent_margin"
+            android:layout_marginTop="@dimen/parent_margin"
+            android:layout_marginEnd="@dimen/parent_margin"
+            android:layout_marginBottom="@dimen/intra_margin"
+            android:text="@string/welcome_message" />
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/checkAnswersRestartGameBtn"
+            android:layout_alignBottom="@id/checkAnswersRestartGameBtn"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/parent_margin"
+            android:text="@{model.scoreText(context)}"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:visibility="@{model.scoreTextVisibility}"
+            tools:text="Score: 5 / 10" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/questionList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/checkAnswersRestartGameBtn"
+            android:layout_below="@id/welcomeText"
+            android:layout_marginTop="@dimen/intra_margin"
+            android:layout_marginBottom="@dimen/intra_margin"
+            android:visibility="@{model.questionListVisibility}" />
+
+    </RelativeLayout>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.applimatix.mytriviaquiz.view.MainViewModel" />
+    </data>
+
+</layout>

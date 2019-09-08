@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/parent_margin"
+        android:layout_marginTop="@dimen/item_margin"
+        android:layout_marginEnd="@dimen/parent_margin"
+        android:layout_marginBottom="@dimen/item_margin">
+
+        <!-- TODO Change to ConstraintLayout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/parent_margin">
+
+            <RadioGroup
+                android:id="@+id/answersGrp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questionTxt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/intra_margin" />
+
+            <TextView
+                android:id="@+id/difficultyTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:text="@{model.difficulty.toString()}"
+                tools:text="Hard" />
+
+            <TextView
+                android:id="@+id/questionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/categoryTxt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/intra_margin"
+                android:text="@{model.question}"
+                tools:text="Which of the following countries does NOT recognize Armenia as an independent country?" />
+
+            <TextView
+                android:id="@+id/categoryTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@{model.category}"
+                tools:text="Geography" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.applimatix.mytriviaquiz.api.Question" />
+
+    </data>
+
+</layout>
